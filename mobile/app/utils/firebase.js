@@ -1,12 +1,12 @@
-import firebase from 'firebase'
+import firebase from 'firebase/app'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB8IB5Bc8yHxX5kgOZKhn--cs0yA3DosCw",
-    authDomain: "prorestc-c3d54.firebaseapp.com",
-    projectId: "prorestc-c3d54",
-    storageBucket: "prorestc-c3d54.appspot.com",
-    messagingSenderId: "99308105941",
-    appId: "1:99308105941:web:dce3151425f8114ed9325c"
-  }
+  apiKey: "AIzaSyDP9GVFHC22jHav_pGDTZKt-wUWPRqMMMA",
+  authDomain: "prorestc.firebaseapp.com",
+  projectId: "prorestc",
+  storageBucket: "prorestc.appspot.com",
+  messagingSenderId: "200553239718",
+  appId: "1:200553239718:web:509131498c4b84f2305067"
+};
 
-  export const firebaseApp = firebase.initializeApp(firebaseConfig)
+  export const firebaseapp = firebase.initializeApp(firebaseConfig)
