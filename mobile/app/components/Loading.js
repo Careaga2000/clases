@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
         height: 100,
         width: 200,
         backgroundColor: '#fff',
-        borderColor: '00a680' ,
+        borderColor: '#00a680' ,
         borderWidth: 2,
         borderRadius: 10
     },
     text:{
-        color: '00a680',
+        color: '#00a680',
         textTransform: 'uppercase',
         marginTop: 10
     }

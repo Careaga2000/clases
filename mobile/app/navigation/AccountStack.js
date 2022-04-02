@@ -1,11 +1,10 @@
 import React from "react"
-import { createStackNavigator} from '@react-navigation/stack'
-import Account from "../screens/Account/Account"
+import {createStackNavigator} from '@react-navigation/stack'
 import Login from "../screens/Account/Login"
 import Register from "../screens/Account/Register"
+import Account from "./../screens/Account/Account"
 
 const Stack = createStackNavigator()
-
 export default function AccountStack(){
     return(
         <Stack.Navigator>
