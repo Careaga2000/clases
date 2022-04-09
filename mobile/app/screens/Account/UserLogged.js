@@ -4,6 +4,7 @@ import firebase from "firebase"
 import Toast from "react-native-toast-message"
 import { Button } from "react-native-elements"
 import InfoUser from "../../components/Account/InfoUser"
+import AccountOptions from "../../components/Account/AccountOptions"
 
 export default function UserLogged(){
     const [userInfo, setUserInfo] = useState(null)
@@ -15,36 +16,36 @@ export default function UserLogged(){
         })()
     }, [])
     return(
-        <View style={StyleSheet.viewUserinfo}>
-            {userInfo&&<InfoUser userInfo={userInfo} toastRef={toastRef} />}
-            <Text> AccountOptions...</Text>
+        <View style={styles.viewUserInfo}>
+            {userInfo&&<InfoUser userInfo={userInfo} toastRef={toastRef}/>}
+            <AccountOptions userInfo = {userInfo} toastRef={toastRef}/>
             <Button 
-                title='Cerrar sesión' 
-                containerStyle={styles.boton}
-                buttonStyle={styles.titulo}
-                onPress={()=>firebase.auth().signOut()}/>
-                <Toast ref={toastRef}/>
+            containerStyle={styles.btnCointainerSignOut}
+            buttonStyle={styles.btnSignOut}
+            title='Cerrar sesión' onPress={()=>firebase.auth().signOut()}/>
+            <Toast ref={toastRef}/>
         </View>
     )
 }
+
 const styles = StyleSheet.create({
-    viewUserinfo:{
-        minHeight: '100%',
-        backgroundColor: '#f2f2f2'
+    viewUserInfo:{
+      minHeight:'100%',
+      backgroundColor: '#f2f2f2'  
     },
-    boton:{
+    btnCointainerSignOut:{
         marginTop:30,
         borderRadius: 0,
-        backgroundColor: '#00a680',
-        borderTopWidth: 1,
+        borderTopWidth:1,
         borderTopColor: '#e3e3e3',
         borderBottomWidth: 1,
-        borderBottomColor: '#e3e3e3',
+        borderBottomColor: '#e4e4e4',
         paddingTop: 10,
-        paddingBottom: 10
+        paddingBottom:10,
+        width: '95%',
+        
     },
-    titulo:{
+    btnSignOut:{
         backgroundColor: '#00a680'
-
     }
 })
