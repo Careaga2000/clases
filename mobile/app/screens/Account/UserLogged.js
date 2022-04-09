@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     },
     btnCointainerSignOut:{
         marginTop:30,
-        borderRadius: 0,
+        marginLeft: 10,
         borderTopWidth:1,
         borderTopColor: '#e3e3e3',
         borderBottomWidth: 1,
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
         
     },
     btnSignOut:{
-        backgroundColor: '#00a680'
+        backgroundColor: '#00a680',
+        textAlign: "center"
     }
 })
