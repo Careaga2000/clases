@@ -1,15 +1,15 @@
-import React from "react"
+import React, { useState } from "react"
 import { StyleSheet, View, Text } from "react-native"
 import { Avatar } from "react-native-elements"
-import firebase from 'firebase'
+import firebase from "firebase"
 import * as Permissions from 'expo-permissions'
 import * as ImagePicker from 'expo-image-picker'
 import Loading from '../Loading'
 
 export default function InfoUser(props){
-    const {userInfo, toastRef} = props
+    const {userInfo, toastRef, setReloadUserInfo} = props
     const {uid, photoURL, displayName,email} = userInfo
-
+    const [loading, setIsLoading] = useState(false)
     // const {userInfo: {photoURL, displayName, email}, toastRef } = props
     //const {photoURL, displayName, email} = userInfo
     // console.log(photoURL)
@@ -28,11 +28,11 @@ export default function InfoUser(props){
                 text1: 'Permissions',
                 text2: 'Es necesario aceptar los permisos de la galeria :c',
                 visibilityTime: 3000,
-            });
+            })
         } else {
             const result = await ImagePicker.launchImageLibraryAsync({
                 allowsEditing:true,
-                aspect:[4,3]
+                aspect:[4,3]     
             })
             console.log(result)
             if (result.cancelled){
@@ -44,9 +44,11 @@ export default function InfoUser(props){
                     visibilityTime: 3000,
                 })
             } else{
+                setIsLoading(true)
                 uploadImage(result.uri).then(()=>{
                     console.log('Imagen dentro de firebase')
                     updatePhotoUrl()
+                setIsLoading(false)
                 }).catch(()=>{
                     toastRef.current.show({
                         type: 'Error',
@@ -75,6 +77,8 @@ export default function InfoUser(props){
                 const update = {photoURL: response}
                 await firebase.auth().currentUser.updateProfile(update)
                 console.log('Imagen actualizada')
+
+                setReloadUserInfo(true)
             })
         }
 
@@ -94,6 +98,7 @@ export default function InfoUser(props){
                 <Text style={styles.displayName}>
                     {displayName ? displayName : 'Invitado'}
                 </Text>
+                <Loading isVisible = {loading} text = 'Cargando...'/>
                 <Text> {email ? email : 'Entrada por SSO'}</Text>
             </View>
         </View>

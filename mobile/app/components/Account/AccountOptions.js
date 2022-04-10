@@ -1,8 +1,11 @@
 import React, {useState} from "react"
+import {render} from "react-dom"
 import { StyleSheet, View, Text} from "react-native"
 import { ListItem , Icon} from "react-native-elements"
 import Modal from "../Modal"
 import ChangeDisplayNameForm from "./ChangeDisplayNameForm"
+import ChangeDisplayPassword from "./ChangeDisplayPassword"
+import ChangeDisplayEmail from "./ChangeDisplayEmail"
 
 export default function AccountOptions(props){
     const {userInfo, toastRef, setReloadUserInfo} = props
@@ -23,11 +26,19 @@ export default function AccountOptions(props){
                 setShowModal(true)
                 break
             case 'displayEmail':
-                setRenderComponent(<Text>Cambiando email</Text>)
+                setRenderComponent(<ChangeDisplayEmail
+                    displayEmail={userInfo.email}
+                    setShowModal={setShowModal}
+                    toastRef={toastRef}
+                    setReloadUserInfo= {setReloadUserInfo}
+                    />)
                 setShowModal(true)
                 break
             case 'displayPassword':
-                setRenderComponent(<Text>Cambiando password </Text>)
+                setRenderComponent(<ChangeDisplayPassword
+                    toastRef={toastRef}
+                    setShowModal={setShowModal}                                        
+                    />)
                 setShowModal(true)
                 break
             default:
@@ -38,16 +49,15 @@ export default function AccountOptions(props){
     }
     const menuOptions = generateOptions(selectedComponent)
 
-
     return (
         <View>
             {menuOptions.map((menu, index)=>(
                 <ListItem key={index} bottomDivider onPress={menu.onPress}>
-                    <Icon name = {menu.IconNAmeLeft}/>
+                    <Icon name = {menu.IconNameLeft}/>
                     <ListItem.Content>
                         <ListItem.Title>{menu.title}</ListItem.Title>
                     </ListItem.Content>
-                    <ListItem.Chevron/>
+                   {/* <ListItem.Chevron/> */}
                 </ListItem>
             ))}
             {renderComponent &&(

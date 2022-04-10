@@ -18,10 +18,9 @@ export default function UserLogged(){
         })()
     setReloadUserInfo(false)
     }, [reloadUserInfo])
-
     return(
         <View style={styles.viewUserInfo}>
-            {userInfo&&(<InfoUser userInfo={userInfo} toastRef={toastRef}/>)}
+            {userInfo&&(<InfoUser userInfo={userInfo} toastRef={toastRef} setReloadUserInfo={setReloadUserInfo}/>)}
             <AccountOptions userInfo = {userInfo} toastRef={toastRef} setReloadUserInfo={setReloadUserInfo}/>
             <Button 
             containerStyle={styles.btnCointainerSignOut}

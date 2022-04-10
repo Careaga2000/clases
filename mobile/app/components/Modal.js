@@ -1,7 +1,6 @@
-import React, { Children } from "react"
+import React from "react"
 import { StyleSheet } from "react-native"
 import { Overlay } from "react-native-elements"
-import { BackgroundImage } from "react-native-elements/dist/config"
 
 export default function Modal(props){
     const {isVisible,setIsVisible, children}= props

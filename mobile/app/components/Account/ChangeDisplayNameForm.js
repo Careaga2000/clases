@@ -7,7 +7,7 @@ export default function ChangeDisplayNameForm(props){
     const {displayName, setShowModal, toastRef,setReloadUserInfo} = props
     const [newDisplayName ,setNewDisplayName]= useState(null)
     const [error ,setError]= useState(null)
-    const [isLoading ,setIsLoading]= useState(null)
+    const [isLoading ,setIsLoading]= useState(false)
 
     const onSubmit= ()=>{
         setError(null)
@@ -24,7 +24,14 @@ export default function ChangeDisplayNameForm(props){
                 .auth()
                 .currentUser.updateProfile(update)
                 .then(()=>{
-                    console.log('Excelente desde firebase')
+                    toastRef.current.show({
+                        type: 'success',
+                        position: 'top',
+                        text1: 'Nombre',
+                        text2: 'Se ha cambiado el nombre.',
+                        visibilityTime: 3000
+                    }) 
+                    //console.log('Excelente desde firebase')
                     setIsLoading(false)
                     setReloadUserInfo(true)
                     setShowModal(false)
