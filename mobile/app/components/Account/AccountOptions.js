@@ -73,17 +73,17 @@ function generateOptions(selectedComponent){
     return[
         {
             title: 'Cambiar nombre y apellidos',
-            IconNAmeLeft: 'account-circle',
+            iconNameLeft: 'account-circle',
             onPress: ()=> selectedComponent('displayName')
         },
         {
             title: 'Cambiar email',
-            IconNAmeLeft: 'drafts',
+            iconNameLeft: 'drafts',
             onPress: ()=> selectedComponent('displayEmail')
         },
         {
             title: 'Cambiar password',
-            IconNAmeLeft: 'lock',
+            iconNameLeft: 'lock',
             onPress: ()=> selectedComponent('displayPassword')
         },
     ]
